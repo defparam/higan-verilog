@@ -1,4 +1,4 @@
-higan-verilog - Emulator/Verilog Co-simulation
+higan-verilog - Completely Open Source Emulator/Verilog Co-simulation
 ===============================
 
 Welcome! This repo is a clone of higan v106 modified to provide an example and framework of an Emulator/Simulator co-simulation model. As far as I know this is the first attempt to combine the Verilator engine into a software emulator.
@@ -7,7 +7,7 @@ In this example we extend the Super Famicom emulation model at memory-inline.hpp
 
 We show an example of memsnoop.v being used to modify specific memory accesses an show how the verilog model effects the emulator.
 
-Here is a video of the memsnoop.v model and Super Mario World: http://youtube.com/T88LhuoQ7pg
+Here is a video of the memsnoop.v model and Super Mario World: http://youtu.be/T88LhuoQ7pg
 
 A couple things to note:
 1) This architecture is not limited to higan, SNES or Verilator. Co-simulation has existed for a while in many RTL simulators. This modeling can be done on other emulators/platforms/roms. I only use higan and memsnoop on SMW to show as an example
@@ -32,6 +32,8 @@ How to install
 5) make -C icarus
 
 The current model of memsnoop.v passes all bus accesses without modification. Feel free to modify the verilog and re-compile higan.
+
+This current model also dumps waveforms to memsnoop_dump.vcd to view in gtkwave
 
 
 
