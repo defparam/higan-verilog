@@ -9,7 +9,8 @@ We show an example of memsnoop.v being used to modify specific memory accesses a
 
 Here is a video of the memsnoop.v model and Super Mario World: http://youtu.be/T88LhuoQ7pg
 
-A couple things to note:
+Info
+===============================
 1) This architecture is not limited to higan, SNES or Verilator. Co-simulation has existed for a while in many RTL simulators. This modeling can be done on other emulators/platforms/roms. I only use higan and memsnoop on SMW to show as an example
 2) One can use this architecture to build a co-processor in verilog and test it on emulator
 3) One can use this architecture to validate emulation or RTL verilog co-processor models with each other
@@ -35,7 +36,15 @@ The current model of memsnoop.v passes all bus accesses without modification. Fe
 
 This current model also dumps waveforms to memsnoop_dump.vcd to view in gtkwave
 
-
+List of notable files added/modified
+===============================
+1) ./higan/GNUMakefile
+2) ./higan/sfc/GNUMakefile
+3) ./higan/sfc/sfc.hpp
+4) ./higan/memory/memory-inline.hpp
+5) ./higan/memory/verilog-device.hpp
+6) ./higan/memory/verilog-device.cpp
+7) ./higan/memory/memsnoop.v
 
 
 	
