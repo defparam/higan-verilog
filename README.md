@@ -5,7 +5,7 @@ Welcome! This repo is a clone of higan v106 modified to provide an example and f
 
 In this example we extend the Super Famicom emulation model at memory-inline.hpp. The Bus::read and Bus::write routines have been modified to insert a proxy verilog model inline. All SNES reads and writes are pushed through this proxy verilog model into a class called verilog-device. The verilog-device class contains all the verilator model hooks to take all read/write operations and push it through a memory snoop model described in verilog (memsnoop.v).
 
-We show an example of memsnoop.v being used to modify specific memory accesses an show how the verilog model effects the emulator.
+We show an example of memsnoop.v being used to modify specific memory accesses and show how the verilog model effects the emulator.
 
 Here is a video of the memsnoop.v model and Super Mario World: http://youtu.be/T88LhuoQ7pg
 
@@ -34,7 +34,9 @@ How to install
 
 The current model of memsnoop.v passes all bus accesses without modification. Feel free to modify the verilog and re-compile higan.
 
-This current model also dumps waveforms to memsnoop_dump.vcd to view in gtkwave
+This current model also dumps waveforms to memsnoop_dump.vcd to view in gtkwave. To turn off wave dump modify the verilog-device class.
+
+WARNING: wave dumping fills the disk very fast. I capped the example at only the first 50000 samples.
 
 List of notable files added/modified
 ===============================
