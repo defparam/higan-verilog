@@ -3,11 +3,11 @@ higan-verilog - Completely Open Source Emulator/Verilog Co-simulation
 
 Welcome! This repo is a clone of higan v106 modified to provide an example and framework of an Emulator/Simulator co-simulation model. As far as I know this is the first attempt to combine the Verilator engine into a software emulator.
 
-In this example we extend the Super Famicom emulation model at memory-inline.hpp. The Bus::read and Bus::write routines have been modified to insert a proxy verilog model inline. All SNES reads and writes are pushed through this proxy verilog model into a class called verilog-device. The verilog-device class contains all the verilator model hooks to take all read/write operations and push it through a memory snoop model described in verilog (memsnoop.v).
+In this example we extend the Super Famicom emulation model at `memory-inline.hpp`. The `Bus::read` and `Bus::write` routines have been modified to insert a proxy verilog model inline. All SNES reads and writes are pushed through this proxy verilog model into a class called verilog-device. The verilog-device class contains all the verilator model hooks to take all read/write operations and push it through a memory snoop model described in verilog (`memsnoop.v`).
 
-We show an example of memsnoop.v being used to modify specific memory accesses and show how the verilog model effects the emulator.
+We show an example of `memsnoop.v` being used to modify specific memory accesses and show how the verilog model effects the emulator.
 
-Here is a video of the memsnoop.v model and Super Mario World: http://youtu.be/T88LhuoQ7pg
+Here is a video of the `memsnoop.v` model and Super Mario World: http://youtu.be/T88LhuoQ7pg
 
 Info
 ===============================
@@ -18,36 +18,34 @@ Info
 Limitations
 ===============================
 1) I only tested this on Ubuntu (however a Windows port may be possible)
-2) The GNUMakefile changes I made are bad. I am terrible at Makefile. Also for some reason verilator likes to generate all its *.h *.cpp *.o in the same obj directory. If someone would like to extend this and create a better Makefile then I welcome it!
+2) The GNUMakefile changes I made are bad. I am terrible at `Makefile`. Also for some reason verilator likes to generate all its *.h *.cpp *.o in the same obj directory. If someone would like to extend this and create a better Makefile then I welcome it!
 
 How to install
 ===============================
 
 1) Install Verilator by following steps here: https://www.veripool.org/projects/verilator/wiki/Installing
-2) Install higan pre-reqs: 
-	sudo apt-get install build-essential libgtk2.0-dev libpulse-dev \
+2) Install higan pre-reqs:
+   ```
+    sudo apt-get install build-essential libgtk2.0-dev libpulse-dev \
     mesa-common-dev libgtksourceview2.0-dev libcairo2-dev libsdl1.2-dev \
     libxv-dev libao-dev libopenal-dev libudev-dev
-3) Install gtkwave: sudo apt-get install gtkwave
-4) make -C higan
-5) make -C icarus
+   ```
+3) Install gtkwave: `sudo apt-get install gtkwave`
+4) `make -C higan`
+5) `make -C icarus`
 
 The current model of memsnoop.v passes all bus accesses without modification. Feel free to modify the verilog and re-compile higan.
 
-This current model also dumps waveforms to memsnoop_dump.vcd to view in gtkwave. To turn off wave dump modify the verilog-device class.
+This current model also dumps waveforms to `memsnoop_dump.vcd` to view in gtkwave. To turn off wave dump modify the verilog-device class.
 
-WARNING: wave dumping fills the disk very fast. I capped the example at only the first 50000 samples.
+**WARNING**: wave dumping fills the disk very fast. I capped the example at only the first 50000 samples.
 
 List of notable files added/modified
 ===============================
-1) ./higan/GNUMakefile
-2) ./higan/sfc/GNUMakefile
-3) ./higan/sfc/sfc.hpp
-4) ./higan/memory/memory-inline.hpp
-5) ./higan/memory/verilog-device.hpp
-6) ./higan/memory/verilog-device.cpp
-7) ./higan/memory/memsnoop.v
-
-
-	
-	
+1) `./higan/GNUMakefile`
+2) `./higan/sfc/GNUMakefile`
+3) `./higan/sfc/sfc.hpp`
+4) `./higan/memory/memory-inline.hpp`
+5) `./higan/memory/verilog-device.hpp`
+6) `./higan/memory/verilog-device.cpp`
+7) `./higan/memory/memsnoop.v`
